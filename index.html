@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Pro | Design & Marketing Digital que Vende</title>
+<meta name="description" content="Design profissional, social media, identidade visual, currículos, sites e materiais digitais para empresas e profissionais.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: { gold:'#D4AF37', goldlight:'#F1D56A', ink:'#080808', ink2:'#0C0C0C', card:'#151515' },
+      fontFamily: { inter:['Inter','sans-serif'], display:['Sora','Inter','sans-serif'] }
+    }
+  }
+}
+</script>
+<style>
+:root{ --black:#080808; --black-2:#101010; --card:#151515; --white:#fff; --gray:#a7a7a7; --gold:#D4AF37; --gold-light:#F1D56A; --border:rgba(255,255,255,.09); }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:"Inter",sans-serif;background:var(--black);color:#fff;line-height:1.6;overflow-x:hidden}
+::selection{background:#D4AF37;color:#080808}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:#080808}
+::-webkit-scrollbar-thumb{background:linear-gradient(#D4AF37,#8a6f14);border-radius:10px}
+a{color:inherit;text-decoration:none}
+.container{width:min(1160px,92%);margin:auto}
+.font-display{font-family:"Sora",sans-serif}
+/* PRELOADER */
+#preloader{position:fixed;inset:0;z-index:9999;background:#080808;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;transition:opacity .6s,visibility .6s}
+#preloader.hide{opacity:0;visibility:hidden}
+.loader-logo{font-family:Sora;font-weight:800;font-size:32px;letter-spacing:-1.5px}
+.loader-logo span{color:#D4AF37}
+.loader-bar{width:200px;height:2px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden}
+.loader-bar i{display:block;height:100%;width:40%;background:linear-gradient(90deg,#D4AF37,#F1D56A);border-radius:99px;animation:load 1.1s infinite ease-in-out}
+@keyframes load{0%{transform:translateX(-100%)}100%{transform:translateX(500%)}}
+/* HEADER */
+header{position:fixed;width:100%;top:0;z-index:1000;background:rgba(8,8,8,.78);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--border);transition:.3s}
+header.scrolled{background:rgba(8,8,8,.94);box-shadow:0 10px 40px rgba(0,0,0,.5)}
+.nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:Sora;font-size:22px;font-weight:800;letter-spacing:-1px;display:flex;align-items:center;gap:10px}
+.logo-mark{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#D4AF37,#8a6f14);display:grid;place-items:center;color:#080808;font-weight:800;font-size:18px;box-shadow:0 6px 20px rgba(212,175,55,.35)}
+.logo span.g{color:var(--gold)}
+.nav-links{display:flex;gap:28px;list-style:none;align-items:center}
+.nav-links a{color:#c9c9c9;font-size:14px;font-weight:500;transition:.25s;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:2px;background:#D4AF37;transition:.3s;border-radius:99px}
+.nav-links a:hover{color:#F1D56A}
+.nav-links a:hover::after{width:100%}
+.menu-btn{display:none;border:0;background:rgba(255,255,255,.06);color:white;font-size:22px;cursor:pointer;width:44px;height:44px;border-radius:10px;border:1px solid var(--border)}
+#mobileMenu{position:fixed;inset:0;z-index:999;background:rgba(8,8,8,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;opacity:0;visibility:hidden;transition:.4s}
+#mobileMenu.open{opacity:1;visibility:visible}
+#mobileMenu a{font-family:Sora;font-size:28px;font-weight:700;letter-spacing:-1px}
+#mobileMenu a:hover{color:#F1D56A}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:12px;font-weight:700;font-size:14px;transition:.3s;cursor:pointer;border:1px solid transparent;white-space:nowrap}
+.btn-primary{background:linear-gradient(135deg,#F1D56A,#D4AF37 60%,#b8941f);color:#080808;box-shadow:0 10px 30px rgba(212,175,55,.25)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 45px rgba(212,175,55,.35);filter:brightness(1.05)}
+.btn-outline{border-color:var(--border);color:white;background:rgba(255,255,255,.03)}
+.btn-outline:hover{border-color:#D4AF37;color:#F1D56A;transform:translateY(-3px)}
+.btn-ghost{padding:12px 18px;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.25);color:#F1D56A;border-radius:10px;font-size:13px;font-weight:700}
+.btn-ghost:hover{background:rgba(212,175,55,.15)}
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:130px 0 70px;background:radial-gradient(1000px 600px at 85% 15%,rgba(212,175,55,.12),transparent 60%),radial-gradient(800px 500px at 10% 90%,rgba(212,175,55,.07),transparent 60%),#080808}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(700px 500px at 50% 30%,black 30%,transparent 75%);pointer-events:none}
+#dust{position:absolute;inset:0;pointer-events:none}
+.hero-orb{position:absolute;width:560px;height:560px;background:radial-gradient(circle,rgba(212,175,55,.22),transparent 65%);filter:blur(30px);right:-140px;top:40px;pointer-events:none;animation:floatOrb 7s ease-in-out infinite}
+@keyframes floatOrb{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.05)}}
+.badge{display:inline-flex;align-items:center;gap:9px;padding:8px 16px;border:1px solid rgba(212,175,55,.35);border-radius:50px;color:var(--gold-light);font-size:12.5px;font-weight:600;margin-bottom:22px;background:rgba(212,175,55,.07)}
+.badge .dot{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 10px #22c55e;animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+h1{font-family:Sora;font-size:clamp(42px,7vw,80px);line-height:.98;letter-spacing:-3.5px;margin-bottom:22px;font-weight:800}
+h1 span{color:transparent;background:linear-gradient(100deg,#F1D56A,#D4AF37 50%,#fff2b0);-webkit-background-clip:text;background-clip:text}
+.rotator{display:inline-block;color:transparent;background:linear-gradient(100deg,#fff,#F1D56A);-webkit-background-clip:text;background-clip:text;border-bottom:3px solid rgba(212,175,55,.5);min-width:170px}
+.hero p.sub{color:var(--gray);font-size:17.5px;max-width:620px;margin-bottom:30px}
+.hero-stats{display:flex;gap:34px;margin-top:42px;flex-wrap:wrap}
+.hstat strong{font-family:Sora;font-size:28px;display:block;line-height:1}
+.hstat strong em{color:#D4AF37;font-style:normal}
+.hstat span{font-size:12.5px;color:#8a8a8a;text-transform:uppercase;letter-spacing:1.2px;font-weight:600}
+.hero-visual{position:relative;perspective:1200px}
+.mock-wrap{position:relative;transform-style:preserve-3d;transition:transform .2s ease-out}
+.main-mock{border-radius:22px;overflow:hidden;border:1px solid rgba(212,175,55,.25);box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.05) inset;position:relative;background:#111}
+.main-mock img{width:100%;height:480px;object-fit:cover;display:block}
+.mock-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,8,8,.92) 5%,transparent 55%)}
+.float-card{position:absolute;background:rgba(18,18,18,.88);backdrop-filter:blur(16px);border:1px solid rgba(212,175,55,.22);border-radius:16px;padding:14px 16px;display:flex;gap:12px;align-items:center;box-shadow:0 20px 50px rgba(0,0,0,.5);animation:floaty 5s ease-in-out infinite;z-index:3}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.fc-icon{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-weight:800;flex-shrink:0}
+.trust-row{display:flex;align-items:center;gap:14px;margin-top:28px}
+.avatars{display:flex}
+.avatars img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:2px solid #080808;margin-left:-10px}
+.avatars img:first-child{margin-left:0}
+.stars{color:#D4AF37;letter-spacing:2px;font-size:14px}
+/* MARQUEE */
+.marquee{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:#0a0a0a;overflow:hidden;padding:18px 0;white-space:nowrap}
+.marquee-track{display:inline-flex;gap:46px;animation:scrollX 26s linear infinite;padding-right:46px}
+.marquee-track span{font-family:Sora;font-size:13px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#7a7a7a;display:inline-flex;align-items:center;gap:46px}
+.marquee-track b{color:#D4AF37}
+@keyframes scrollX{to{transform:translateX(-50%)}}
+/* SECTIONS */
+section{padding:96px 0;position:relative}
+.section-title{max-width:720px;margin-bottom:52px}
+.section-title small{color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:2.5px;font-size:12px;display:inline-flex;align-items:center;gap:10px}
+.section-title small::before{content:"";width:28px;height:2px;background:#D4AF37;display:inline-block;border-radius:99px}
+.section-title h2{font-family:Sora;font-size:clamp(30px,5vw,50px);line-height:1.05;margin:14px 0 16px;letter-spacing:-2px}
+.section-title p{color:var(--gray);font-size:16px}
+/* SERVICES */
+.services{background:#0c0c0c;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.service-card{padding:30px 26px;background:linear-gradient(180deg,#171717,#121212);border:1px solid var(--border);border-radius:18px;transition:.35s;position:relative;overflow:hidden;cursor:pointer}
+.service-card::after{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#D4AF37,transparent);opacity:0;transition:.35s}
+.service-card:hover{transform:translateY(-8px);border-color:rgba(212,175,55,.45);box-shadow:0 25px 60px rgba(0,0,0,.5),0 10px 30px rgba(212,175,55,.08)}
+.service-card:hover::after{opacity:1}
+.icon{width:52px;height:52px;display:grid;place-items:center;border-radius:14px;background:rgba(212,175,55,.1);color:var(--gold-light);margin-bottom:20px;border:1px solid rgba(212,175,55,.18)}
+.service-card h3{margin-bottom:10px;font-size:17px;font-family:Sora;letter-spacing:-.5px}
+.service-card p{color:var(--gray);font-size:13.8px;margin-bottom:16px}
+.service-card .link{font-size:13px;font-weight:700;color:#F1D56A;display:inline-flex;align-items:center;gap:6px}
+.service-card .price-tag{position:absolute;top:20px;right:20px;font-size:11px;font-weight:800;background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.25);color:#F1D56A;padding:5px 10px;border-radius:99px}
+/* PORTFOLIO */
+.filter-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+.filter-btn{padding:10px 18px;border-radius:99px;border:1px solid var(--border);background:#111;font-size:13px;font-weight:600;color:#bbb;cursor:pointer;transition:.25s}
+.filter-btn.active,.filter-btn:hover{background:#D4AF37;color:#080808;border-color:#D4AF37;font-weight:800}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.portfolio-item{border-radius:18px;border:1px solid var(--border);overflow:hidden;position:relative;cursor:pointer;background:#111;transition:.35s;min-height:320px}
+.portfolio-item:hover{transform:translateY(-6px);border-color:rgba(212,175,55,.5);box-shadow:0 25px 60px rgba(0,0,0,.55)}
+.portfolio-item img{width:100%;height:320px;object-fit:cover;display:block;transition:.6s}
+.portfolio-item:hover img{transform:scale(1.07)}
+.portfolio-info{position:absolute;inset:auto 0 0 0;padding:22px;background:linear-gradient(to top,rgba(0,0,0,.92),rgba(0,0,0,.4) 70%,transparent);z-index:2}
+.portfolio-info small{color:var(--gold-light);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:1.5px}
+.portfolio-info h3{margin-top:4px;font-family:Sora;font-size:17px;letter-spacing:-.5px}
+.portfolio-info p{font-size:12.5px;color:#c7c7c7}
+.p-badge{position:absolute;top:14px;left:14px;z-index:2;background:rgba(8,8,8,.7);backdrop-filter:blur(10px);border:1px solid rgba(212,175,55,.3);color:#F1D56A;font-size:11px;font-weight:700;padding:6px 12px;border-radius:99px}
+.p-arrow{position:absolute;top:14px;right:14px;z-index:2;width:38px;height:38px;border-radius:50%;background:#D4AF37;color:#080808;display:grid;place-items:center;font-weight:800;opacity:0;transform:translateY(-8px);transition:.3s}
+.portfolio-item:hover .p-arrow{opacity:1;transform:translateY(0)}
+/* PROCESS */
+.process{background:#0c0c0c;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.process-card{border:1px solid var(--border);background:#121212;border-radius:18px;padding:28px 24px;position:relative;overflow:hidden;transition:.3s}
+.process-card:hover{border-color:rgba(212,175,55,.4);transform:translateY(-6px)}
+.number{font-family:Sora;font-size:44px;font-weight:800;color:transparent;-webkit-text-stroke:1px rgba(212,175,55,.55);margin-bottom:12px;line-height:1}
+.process-card h3{margin-bottom:8px;font-family:Sora;font-size:16px}
+.process-card p{color:var(--gray);font-size:13.5px}
+.step-line{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#D4AF37,transparent)}
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.price-card{background:linear-gradient(180deg,#161616,#0f0f0f);border:1px solid var(--border);border-radius:22px;padding:36px 30px;position:relative;transition:.35s;display:flex;flex-direction:column}
+.price-card.featured{border-color:rgba(212,175,55,.55);box-shadow:0 30px 70px rgba(212,175,55,.12);transform:scale(1.03)}
+.price-card:hover{transform:translateY(-8px)}
+.price-card.featured:hover{transform:scale(1.03) translateY(-8px)}
+.pop{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#F1D56A,#D4AF37);color:#080808;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:6px 16px;border-radius:99px;white-space:nowrap}
+.price{font-family:Sora;font-size:44px;font-weight:800;letter-spacing:-2px;margin:14px 0 4px}
+.price small{font-size:15px;color:#888;font-weight:500;letter-spacing:0}
+.check-list{list-style:none;margin:22px 0 28px;display:flex;flex-direction:column;gap:12px;flex:1}
+.check-list li{font-size:13.5px;color:#c9c9c9;display:flex;gap:10px;align-items:flex-start}
+.check-list li i{width:20px;height:20px;border-radius:50%;background:rgba(212,175,55,.15);color:#F1D56A;display:grid;place-items:center;font-size:12px;flex-shrink:0;margin-top:2px;font-style:normal}
+.toggle-wrap{display:inline-flex;background:#141414;border:1px solid var(--border);border-radius:99px;padding:5px;gap:5px;margin-bottom:36px}
+.toggle-btn{padding:10px 22px;border-radius:99px;font-size:13px;font-weight:700;color:#888;cursor:pointer;border:0;background:transparent;transition:.25s}
+.toggle-btn.active{background:#D4AF37;color:#080808}
+/* CALC */
+.calc-section{background:radial-gradient(800px 400px at 50% 0%,rgba(212,175,55,.08),transparent),#0c0c0c;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.calc-layout{display:grid;grid-template-columns:1.25fr .9fr;gap:24px;align-items:start}
+.calc-box{background:#131313;border:1px solid var(--border);border-radius:20px;padding:30px}
+.calc-item{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px;border:1px solid var(--border);border-radius:14px;margin-bottom:12px;transition:.25s;background:#0f0f0f;cursor:pointer}
+.calc-item.selected{border-color:rgba(212,175,55,.6);background:rgba(212,175,55,.06);box-shadow:0 8px 25px rgba(212,175,55,.08)}
+.calc-item input{accent-color:#D4AF37;width:18px;height:18px;cursor:pointer}
+.calc-summary{background:linear-gradient(165deg,#1a1a1a,#0e0e0e);border:1px solid rgba(212,175,55,.3);border-radius:20px;padding:32px;position:sticky;top:100px;overflow:hidden}
+.calc-summary::before{content:"";position:absolute;width:200px;height:200px;background:#D4AF37;opacity:.1;filter:blur(80px);top:-50px;right:-50px}
+.total-val{font-family:Sora;font-size:52px;font-weight:800;letter-spacing:-2px;color:#F1D56A}
+input[type=text],input[type=tel],select,textarea{width:100%;background:#0e0e0e;border:1px solid var(--border);border-radius:12px;padding:14px 16px;color:#fff;font-family:Inter;font-size:14px;outline:none;transition:.25s}
+input:focus,select:focus,textarea:focus{border-color:#D4AF37;box-shadow:0 0 0 3px rgba(212,175,55,.12)}
+label.lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#999;margin-bottom:8px;display:block}
+select option{background:#111}
+/* TESTIMONIALS */
+.testi-viewport{overflow:hidden;border-radius:20px}
+.testi-track{display:flex;transition:transform .6s cubic-bezier(.22,1,.36,1)}
+.testi-card{min-width:100%;background:linear-gradient(180deg,#161616,#0f0f0f);border:1px solid var(--border);border-radius:20px;padding:40px;display:grid;grid-template-columns:1fr 260px;gap:30px;align-items:center}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:20px}
+.dot-btn{width:32px;height:6px;border-radius:99px;background:rgba(255,255,255,.12);border:0;cursor:pointer;transition:.3s}
+.dot-btn.active{background:#D4AF37;width:48px}
+/* FAQ */
+.faq-item{border:1px solid var(--border);border-radius:14px;margin-bottom:12px;background:#111;overflow:hidden;transition:.3s}
+.faq-item.open{border-color:rgba(212,175,55,.4)}
+.faq-q{width:100%;background:none;border:0;color:#fff;padding:20px 22px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-weight:600;font-size:15px;text-align:left;font-family:Inter}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;color:#a7a7a7;font-size:14px}
+.faq-a div{padding:0 22px 20px}
+.faq-icon{width:30px;height:30px;border-radius:50%;background:rgba(212,175,55,.12);color:#F1D56A;display:grid;place-items:center;flex-shrink:0;transition:.3s;font-size:18px}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:#D4AF37;color:#080808}
+/* CTA */
+.cta-box{background:linear-gradient(135deg,#1c1a0e 0%,#171717 40%,#0e0e0e 100%);border:1px solid rgba(212,175,55,.25);border-radius:26px;padding:70px 40px;text-align:center;position:relative;overflow:hidden}
+.cta-box::before{content:"";position:absolute;width:500px;height:300px;background:radial-gradient(ellipse,rgba(212,175,55,.18),transparent 70%);top:-100px;left:50%;transform:translateX(-50%)}
+.cta-box h2{font-family:Sora;font-size:clamp(30px,5vw,54px);line-height:1.02;margin-bottom:16px;letter-spacing:-2px;position:relative}
+.cta-box h2 span{color:#D4AF37}
+/* FOOTER */
+footer{border-top:1px solid var(--border);background:#060606;padding:60px 0 26px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;margin-bottom:40px}
+.foot-grid h4{font-size:13px;text-transform:uppercase;letter-spacing:1.5px;color:#F1D56A;margin-bottom:16px}
+.foot-grid a,.foot-grid p{font-size:13.5px;color:#8f8f8f;display:block;margin-bottom:10px;transition:.25s}
+.foot-grid a:hover{color:#F1D56A;transform:translateX(3px)}
+.socials{display:flex;gap:10px;margin-top:16px}
+.socials a{width:38px;height:38px;border-radius:10px;background:#141414;border:1px solid var(--border);display:grid;place-items:center;color:#ccc}
+.socials a:hover{background:#D4AF37;color:#080808;border-color:#D4AF37}
+/* FLOATING */
+#whats{position:fixed;bottom:24px;right:24px;z-index:900;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);display:grid;place-items:center;box-shadow:0 12px 35px rgba(37,211,102,.4);transition:.3s}
+#whats:hover{transform:scale(1.1) rotate(6deg)}
+#whats::before{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid rgba(37,211,102,.4);animation:ring 1.8s infinite}
+@keyframes ring{0%{transform:scale(.9);opacity:1}100%{transform:scale(1.25);opacity:0}}
+#toTop{position:fixed;bottom:94px;right:32px;z-index:900;width:42px;height:42px;border-radius:12px;background:#1a1a1a;border:1px solid var(--border);color:#F1D56A;display:grid;place-items:center;cursor:pointer;opacity:0;visibility:hidden;transition:.3s}
+#toTop.show{opacity:1;visibility:visible}
+/* MODAL */
+#modal{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.8);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:.35s}
+#modal.open{opacity:1;visibility:visible}
+.modal-box{width:min(880px,100%);background:#121212;border:1px solid rgba(212,175,55,.25);border-radius:22px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;transform:translateY(20px) scale(.98);transition:.35s;max-height:90vh}
+#modal.open .modal-box{transform:translateY(0) scale(1)}
+.modal-box img{width:100%;height:100%;object-fit:cover;min-height:320px}
+/* TOAST */
+#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(100px);background:#141414;border:1px solid rgba(212,175,55,.4);color:#fff;padding:14px 22px;border-radius:14px;font-size:14px;font-weight:600;z-index:3000;transition:.4s;display:flex;gap:10px;align-items:center;box-shadow:0 20px 50px rgba(0,0,0,.6)}
+#toast.show{transform:translateX(-50%) translateY(0)}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s cubic-bezier(.22,1,.36,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.1s}.reveal-d2{transition-delay:.2s}.reveal-d3{transition-delay:.3s}
+/* WHY */
+.why-layout{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.why-img{border-radius:22px;overflow:hidden;border:1px solid var(--border);position:relative}
+.why-img img{width:100%;height:540px;object-fit:cover;display:block}
+.why-check{display:flex;gap:14px;margin-bottom:20px}
+.why-check .wc{width:44px;height:44px;border-radius:12px;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.2);display:grid;place-items:center;color:#F1D56A;flex-shrink:0}
+.counter-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px;background:#0e0e0e;border:1px solid var(--border);border-radius:18px;padding:28px 22px}
+.counter-grid strong{font-family:Sora;font-size:30px;color:#F1D56A;display:block}
+.counter-grid span{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:1px;font-weight:600}
+@media(max-width:1020px){
+.service-grid,.portfolio-grid,.pricing-grid,.process-grid{grid-template-columns:repeat(2,1fr)}
+.calc-layout,.why-layout,.testi-card{grid-template-columns:1fr}
+.hero-grid{grid-template-columns:1fr!important}
+.hero-visual{margin-top:40px}
+.foot-grid{grid-template-columns:1fr 1fr}
+.modal-box{grid-template-columns:1fr;overflow-y:auto}
+.testi-card{padding:28px}
+}
+@media(max-width:640px){
+.nav-links,.nav-cta{display:none}
+.menu-btn{display:grid;place-items:center}
+.service-grid,.portfolio-grid,.pricing-grid,.process-grid{grid-template-columns:1fr}
+.price-card.featured{transform:none}
+section{padding:70px 0}
+.cta-box{padding:50px 22px}
+.calc-box,.calc-summary{padding:22px}
+.foot-grid{grid-template-columns:1fr}
+.counter-grid{grid-template-columns:repeat(2,1fr)}
+.hero-stats{gap:20px}
+h1{letter-spacing:-2px}
+}
+</style>
+</head>
+<body>
+
+<div id="preloader">
+  <div class="loader-logo">DESIGN<span style="color:#D4AF37">PRO</span></div>
+  <div class="loader-bar"><i></i></div>
+  <div style="font-size:12px;letter-spacing:2px;color:#777;text-transform:uppercase">Carregando experiência premium</div>
+</div>
+
+<header id="header">
+  <div class="container nav">
+    <a href="#inicio" class="logo"><span class="logo-mark">D</span> DESIGN<span class="g">PRO</span></a>
+    <ul class="nav-links">
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#portfolio">Portfólio</a></li>
+      <li><a href="#processo">Processo</a></li>
+      <li><a href="#planos">Planos</a></li>
+      <li><a href="#depoimentos">Clientes</a></li>
+    </ul>
+    <div style="display:flex;gap:10px;align-items:center">
+      <a href="#orcamento" class="btn btn-primary nav-cta" style="padding:12px 20px">Solicitar Orçamento
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+      <button class="menu-btn" id="openMenu" aria-label="Abrir menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<div id="mobileMenu">
+  <button id="closeMenu" style="position:absolute;top:22px;right:6%;background:none;border:1px solid rgba(255,255,255,.15);color:#fff;width:44px;height:44px;border-radius:10px;font-size:20px;cursor:pointer">✕</button>
+  <a href="#inicio">Início</a>
+  <a href="#servicos">Serviços</a>
+  <a href="#portfolio">Portfólio</a>
+  <a href="#processo">Processo</a>
+  <a href="#planos">Planos</a>
+  <a href="#orcamento" class="btn btn-primary" style="font-size:16px;margin-top:10px">Solicitar Orçamento</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="grid-bg"></div>
+  <canvas id="dust"></canvas>
+  <div class="hero-orb"></div>
+  <div class="container hero-grid" style="display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center;position:relative;z-index:2">
+    <div class="hero-content">
+      <div class="badge"><span class="dot"></span> Agenda aberta • 3 vagas para este mês</div>
+      <h1>Design que <span>vende.</span><br>Marca que <span class="rotator" id="rotator">encanta.</span></h1>
+      <p class="sub">Identidade visual, social media, sites e currículos profissionais com padrão premium. Transformamos negócios comuns em marcas desejadas e lucrativas.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <a href="#orcamento" class="btn btn-primary">Quero um orçamento
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#portfolio" class="btn btn-outline">Ver portfólio</a>
+      </div>
+      <div class="trust-row">
+        <div class="avatars">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80&auto=format&fit=crop" alt="cliente">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&auto=format&fit=crop" alt="cliente">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80&auto=format&fit=crop" alt="cliente">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80&auto=format&fit=crop" alt="cliente">
+          <span style="width:38px;height:38px;border-radius:50%;background:#D4AF37;color:#080808;font-size:11px;font-weight:800;display:grid;place-items:center;margin-left:-10px;border:2px solid #080808">+450</span>
+        </div>
+        <div>
+          <div class="stars">★★★★★</div>
+          <div style="font-size:13px;color:#aaa"><strong style="color:#fff">4.9/5</strong> • 180+ avaliações verificadas</div>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hstat"><strong><em data-count="450">0</em>+</strong><span>Projetos entregues</span></div>
+        <div class="hstat"><strong><em data-count="98">0</em>%</strong><span>Satisfação</span></div>
+        <div class="hstat"><strong><em data-count="6">0</em> anos</strong><span>De experiência</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="mock-wrap" id="tilt">
+        <div class="main-mock">
+          <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=900&q=80&auto=format&fit=crop" alt="Projeto Design Pro">
+          <div class="mock-overlay"></div>
+          <div style="position:absolute;bottom:22px;left:22px;right:22px;z-index:2;display:flex;justify-content:space-between;align-items:end">
+            <div>
+              <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#F1D56A;font-weight:800">Case em destaque</div>
+              <div style="font-family:Sora;font-weight:800;font-size:22px;letter-spacing:-1px">Rebranding + Social Media</div>
+              <div style="font-size:13px;color:#bbb">+312% de engajamento em 60 dias</div>
+            </div>
+            <button onclick="openModal(0)" style="background:#D4AF37;border:0;width:52px;height:52px;border-radius:50%;font-size:20px;cursor:pointer;font-weight:800;color:#080808">↗</button>
+          </div>
+        </div>
+        <div class="float-card" style="top:22px;left:-24px">
+          <div class="fc-icon" style="background:#22c55e;color:#fff">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <div><div style="font-size:13px;font-weight:800">Projeto aprovado</div><div style="font-size:12px;color:#888">Identidade Visual • agora</div></div>
+        </div>
+        <div class="float-card" style="bottom:110px;right:-18px;animation-delay:1.2s">
+          <div class="fc-icon" style="background:linear-gradient(135deg,#F1D56A,#D4AF37);color:#080808;font-size:18px">◈</div>
+          <div><div style="font-size:13px;font-weight:800">+ R$ 48k gerados</div><div style="font-size:12px;color:#888">para clientes no trimestre</div></div>
+        </div>
+        <div class="float-card" style="top:46%;left:-38px;animation-delay:2s;padding:10px 14px">
+          <div style="display:flex;gap:6px">
+            <span style="width:10px;height:10px;border-radius:50%;background:#ff5f57"></span>
+            <span style="width:10px;height:10px;border-radius:50%;background:#febc2e"></span>
+            <span style="width:10px;height:10px;border-radius:50%;background:#28c840"></span>
+          </div>
+          <div style="font-size:12px;font-weight:700">Entrega em 48h ⚡</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee"><div class="marquee-track" id="marqueeTrack">
+<span>Identidade Visual <b>✦</b> Social Media <b>✦</b> Sites & Landing Pages <b>✦</b> Currículos Premium <b>✦</b> Cardápios <b>✦</b> Catálogos <b>✦</b> Tráfego Pago <b>✦</b>&nbsp;</span>
+<span>Identidade Visual <b>✦</b> Social Media <b>✦</b> Sites & Landing Pages <b>✦</b> Currículos Premium <b>✦</b> Cardápios <b>✦</b> Catálogos <b>✦</b> Tráfego Pago <b>✦</b>&nbsp;</span>
+</div></div>
+
+<!-- SERVICES -->
+<section class="services" id="servicos">
+  <div class="container">
+    <div class="section-title reveal">
+      <small>Nossos serviços</small>
+      <h2>Tudo que sua marca precisa para <span style="color:#D4AF37">dominar o digital</span></h2>
+      <p>Soluções completas de design e marketing com entrega rápida, revisões ilimitadas e padrão visual de alto nível.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card reveal" onclick="selectService('social')">
+        <span class="price-tag">a partir R$297</span>
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></div>
+        <h3>Social Media Design</h3><p>Packs mensais de posts, stories, carrosséis e capas que param o scroll e vendem todos os dias.</p>
+        <span class="link">Solicitar →</span>
+      </div>
+      <div class="service-card reveal reveal-d1" onclick="selectService('identidade')">
+        <span class="price-tag">a partir R$897</span>
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 3c-3 3.5-3 14 0 18M3 12h18"/></svg></div>
+        <h3>Identidade Visual</h3><p>Logotipo, paleta, tipografia e manual completo. Uma marca memorável, profissional e única.</p>
+        <span class="link">Solicitar →</span>
+      </div>
+      <div class="service-card reveal reveal-d2" onclick="selectService('site')">
+        <span class="price-tag">a partir R$697</span>
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/></svg></div>
+        <h3>Sites & Landing Pages</h3><p>Sites rápidos, responsivos e otimizados para Google e WhatsApp. Foco total em conversão.</p>
+        <span class="link">Solicitar →</span>
+      </div>
+      <div class="service-card reveal" onclick="selectService('curriculo')">
+        <span class="price-tag">a partir R$97</span>
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div>
+        <h3>Currículos Profissionais</h3><p>Currículos ATS + LinkedIn otimizados que triplicam suas chances em processos seletivos.</p>
+        <span class="link">Solicitar →</span>
+      </div>
+      <div class="service-card reveal reveal-d1" onclick="selectService('catalogo')">
+        <span class="price-tag">a partir R$297</span>
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V2H6.5A2.5 2.5 0 004 4.5v15z"/><path d="M8 7h8M8 11h6"/></svg></div>
+        <h3>Cardápios & Catálogos</h3><p>Cardápios digitais interativos, catálogos e tabelas de preço com QR Code e link direto.</p>
+        <span class="link">Solicitar →</span>
+      </div>
+      <div class="service-card reveal reveal-d2" onclick="selectService('trafego')">
+        <span class="price-tag">a partir R$497</span>
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l18-8-8 18-2.5-7.5z"/></svg></div>
+        <h3>Tráfego & Posicionamento</h3><p>Criativos para anúncios, otimização de perfil e estratégia para atrair clientes ideais.</p>
+        <span class="link">Solicitar →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:end;flex-wrap:wrap;gap:20px;margin-bottom:20px">
+      <div class="section-title reveal" style="margin-bottom:0">
+        <small>Portfólio</small>
+        <h2>Trabalhos que geram <span style="color:#D4AF37">resultado real</span></h2>
+        <p>Clique em qualquer projeto para ver detalhes, entregáveis e valores.</p>
+      </div>
+      <div class="reveal"><span id="portCount" style="font-family:Sora;font-weight:800;color:#D4AF37;font-size:14px">06 PROJETOS</span></div>
+    </div>
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="social">Social Media</button>
+      <button class="filter-btn" data-filter="identidade">Identidade</button>
+      <button class="filter-btn" data-filter="sites">Sites</button>
+      <button class="filter-btn" data-filter="curriculo">Currículos</button>
+    </div>
+    <div class="portfolio-grid" id="portfolioGrid"></div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section style="background:#0a0a0a;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)">
+  <div class="container why-layout">
+    <div class="why-img reveal">
+      <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80&auto=format&fit=crop" alt="Equipe Design Pro">
+      <div style="position:absolute;bottom:18px;left:18px;right:18px;background:rgba(8,8,8,.78);backdrop-filter:blur(14px);border:1px solid rgba(212,175,55,.3);border-radius:16px;padding:18px 20px;display:flex;gap:16px;align-items:center">
+        <div style="width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#F1D56A,#D4AF37);display:grid;place-items:center;font-size:26px;color:#080808;font-weight:800">✓</div>
+        <div><div style="font-weight:800;font-family:Sora">Garantia total de satisfação</div><div style="font-size:13px;color:#aaa">Revisões ilimitadas até você amar o resultado.</div></div>
+      </div>
+    </div>
+    <div class="reveal reveal-d1">
+      <small style="color:#D4AF37;font-weight:800;text-transform:uppercase;letter-spacing:2.5px;font-size:12px">Por que a Design Pro?</small>
+      <h2 class="font-display" style="font-size:clamp(30px,4.5vw,46px);letter-spacing:-2px;line-height:1.05;margin:12px 0 18px">Não é só bonito.<br>É <span style="color:#D4AF37">estratégico.</span></h2>
+      <p style="color:#a7a7a7;margin-bottom:26px">Cada pixel tem um objetivo: atrair, convencer e converter. Unimos estética premium + psicologia de vendas.</p>
+      <div class="why-check"><div class="wc">◈</div><div><strong>Entrega expressa em 48h</strong><div style="font-size:13.5px;color:#999">Processo ágil sem perder qualidade. Ideal para quem tem pressa.</div></div></div>
+      <div class="why-check"><div class="wc">⬣</div><div><strong>Design exclusivo, nada de template</strong><div style="font-size:13.5px;color:#999">Criação 100% autoral alinhada ao seu posicionamento.</div></div></div>
+      <div class="why-check"><div class="wc">◎</div><div><strong>Suporte direto no WhatsApp</strong><div style="font-size:13.5px;color:#999">Atendimento humano, rápido e personalizado do briefing à entrega.</div></div></div>
+      <div class="counter-grid">
+        <div><strong><span data-count="450">0</span>+</strong><span>Projetos</span></div>
+        <div><strong><span data-count="180">0</span>+</strong><span>Clientes</span></div>
+        <div><strong><span data-count="98">0</span>%</strong><span>Satisfação</span></div>
+        <div><strong><span data-count="12">0</span>x</strong><span>ROI médio</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="processo">
+  <div class="container">
+    <div class="section-title reveal"><small>Como funciona</small><h2>Do briefing à entrega em <span style="color:#D4AF37">4 passos</span></h2><p>Processo simples, transparente e sem burocracia. Você acompanha tudo em tempo real.</p></div>
+    <div class="process-grid">
+      <div class="process-card reveal"><div class="step-line"></div><div class="number">01</div><h3>Briefing & Orçamento</h3><p>Você conta sua ideia na calculadora abaixo ou no WhatsApp. Retornamos em minutos com proposta.</p><div style="margin-top:14px;font-size:12px;color:#F1D56A;font-weight:700">⏱ 5 minutos</div></div>
+      <div class="process-card reveal reveal-d1"><div class="step-line"></div><div class="number">02</div><h3>Criação & Conceito</h3><p>Nossa equipe cria 2-3 direções criativas exclusivas baseadas em pesquisa de mercado e referências.</p><div style="margin-top:14px;font-size:12px;color:#F1D56A;font-weight:700">⏱ 24 - 48h</div></div>
+      <div class="process-card reveal reveal-d2"><div class="step-line"></div><div class="number">03</div><h3>Revisão & Refinamento</h3><p>Você avalia, pede ajustes ilimitados e refinamos cada detalhe até ficar perfeito.</p><div style="margin-top:14px;font-size:12px;color:#F1D56A;font-weight:700">⏱ Revisões ilimitadas</div></div>
+      <div class="process-card reveal reveal-d3"><div class="step-line"></div><div class="number">04</div><h3>Entrega & Suporte</h3><p>Arquivos em alta + versões para web, manual de uso e 7 dias de suporte pós-entrega grátis.</p><div style="margin-top:14px;font-size:12px;color:#F1D56A;font-weight:700">⏱ Arquivos editáveis</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="planos">
+  <div class="container">
+    <div style="text-align:center;max-width:700px;margin:0 auto 20px" class="reveal">
+      <small style="color:#D4AF37;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;font-size:12px">Planos & pacotes</small>
+      <h2 class="font-display" style="font-size:clamp(30px,5vw,50px);letter-spacing:-2px;margin:12px 0">Investimento que <span style="color:#D4AF37">se paga</span></h2>
+      <p style="color:#a7a7a7">Preços transparentes, parcelamento no cartão e garantia de 7 dias.</p>
+    </div>
+    <div style="text-align:center" class="reveal"><div class="toggle-wrap"><button class="toggle-btn active" id="btnMonthly">Mensal</button><button class="toggle-btn" id="btnSingle">Projeto único</button></div></div>
+    <div class="pricing-grid">
+      <div class="price-card reveal">
+        <div style="font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#888">Essencial</div>
+        <div class="price"><span class="p-val" data-m="R$297" data-s="R$497">R$297</span><small>/mês</small></div>
+        <p style="font-size:13px;color:#888">Para quem está começando e precisa de presença profissional.</p>
+        <ul class="check-list">
+          <li><i>✓</i> 12 artes para feed + stories</li><li><i>✓</i> Legendas estratégicas prontas</li><li><i>✓</i> Paleta + tipografia padrão</li><li><i>✓</i> 2 revisões por arte</li><li><i>✓</i> Suporte via WhatsApp</li>
+        </ul>
+        <a href="#orcamento" class="btn btn-outline" style="width:100%" onclick="choosePlan('Essencial')">Escolher Essencial</a>
+      </div>
+      <div class="price-card featured reveal reveal-d1">
+        <div class="pop">★ Mais contratado</div>
+        <div style="font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#F1D56A">Profissional</div>
+        <div class="price"><span class="p-val" data-m="R$597" data-s="R$1.297">R$597</span><small>/mês</small></div>
+        <p style="font-size:13px;color:#888">Para negócios que querem crescer e vender todos os dias.</p>
+        <ul class="check-list">
+          <li><i>✓</i> 30 artes + 8 carrosséis/mês</li><li><i>✓</i> Identidade visual mini</li><li><i>✓</i> Criativos para anúncios (5/mês)</li><li><i>✓</i> Calendário de conteúdo</li><li><i>✓</i> Revisões ilimitadas + prioridade</li><li><i>✓</i> Relatório mensal de performance</li>
+        </ul>
+        <a href="#orcamento" class="btn btn-primary" style="width:100%" onclick="choosePlan('Profissional')">Escolher Profissional</a>
+      </div>
+      <div class="price-card reveal reveal-d2">
+        <div style="font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:#888">Premium</div>
+        <div class="price"><span class="p-val" data-m="R$1.297" data-s="R$2.997">R$1.297</span><small>/mês</small></div>
+        <p style="font-size:13px;color:#888">Operação completa de marca e marketing.</p>
+        <ul class="check-list">
+          <li><i>✓</i> Tudo do Profissional</li><li><i>✓</i> Site / landing page incluso</li><li><i>✓</i> Gestão de tráfego (setup)</li><li><i>✓</i> Ensaios + direção criativa</li><li><i>✓</i> Gerente dedicado</li>
+        </ul>
+        <a href="#orcamento" class="btn btn-outline" style="width:100%" onclick="choosePlan('Premium')">Falar com especialista</a>
+      </div>
+    </div>
+    <div class="reveal" style="display:flex;gap:14px;justify-content:center;margin-top:26px;flex-wrap:wrap;font-size:13px;color:#888">
+      <span>🔒 Pagamento seguro</span><span>•</span><span>💳 Parcele em até 12x</span><span>•</span><span>↩ Garantia de 7 dias</span>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="calc-section" id="orcamento">
+  <div class="container">
+    <div class="section-title reveal"><small>Orçamento instantâneo</small><h2>Monte seu projeto e veja o <span style="color:#D4AF37">valor na hora</span></h2><p>Selecione os serviços, personalize e envie direto para nosso WhatsApp. Resposta em minutos.</p></div>
+    <div class="calc-layout">
+      <div class="calc-box reveal">
+        <label class="lbl">1 • Escolha os serviços</label>
+        <div id="calcList"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px">
+          <div><label class="lbl">Prazo de entrega</label>
+            <select id="urgency">
+              <option value="1">Padrão (5-7 dias)</option>
+              <option value="1.3">Expresso 48h (+30%)</option>
+              <option value="1.5">Urgente 24h (+50%)</option>
+            </select>
+          </div>
+          <div><label class="lbl">Extras</label>
+            <select id="extra">
+              <option value="0">Sem extras</option>
+              <option value="200">Copywriting profissional (+R$200)</option>
+              <option value="350">Setup tráfego pago (+R$350)</option>
+              <option value="550">Copy + Tráfego (+R$550)</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px">
+          <div><label class="lbl">Seu nome *</label><input type="text" id="cliName" placeholder="Ex: Mariana Souza"></div>
+          <div><label class="lbl">Seu WhatsApp *</label><input type="tel" id="cliPhone" placeholder="(11) 99999-9999"></div>
+        </div>
+        <div style="margin-top:14px"><label class="lbl">Detalhes do projeto</label><textarea id="cliMsg" rows="3" placeholder="Conte um pouco sobre seu negócio, cores que gosta, referências..."></textarea></div>
+      </div>
+      <div class="calc-summary reveal reveal-d1">
+        <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#F1D56A;font-weight:800">Resumo do projeto</div>
+        <div id="summaryItems" style="margin:16px 0;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:#ccc"></div>
+        <div style="border-top:1px dashed rgba(212,175,55,.3);padding-top:16px;display:flex;justify-content:space-between;align-items:end">
+          <div><div style="font-size:12px;color:#888">Investimento total</div><div class="total-val" id="totalVal">R$ 0</div><div id="installments" style="font-size:12.5px;color:#888">ou 12x no cartão</div></div>
+          <div style="text-align:right"><div style="font-size:12px;color:#888">Prazo estimado</div><div id="deadline" style="font-family:Sora;font-weight:800;font-size:18px">—</div></div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:14px">
+          <div style="flex:1;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);border-radius:10px;padding:10px;text-align:center;font-size:12px"><strong style="color:#4ade80">✓ Revisões ilimitadas</strong></div>
+          <div style="flex:1;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.3);border-radius:10px;padding:10px;text-align:center;font-size:12px"><strong style="color:#F1D56A">⚡ Entrega expressa</strong></div>
+        </div>
+        <button class="btn btn-primary" onclick="sendWhats()" style="width:100%;margin-top:16px;padding:17px;font-size:15px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.1 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.8h-.01a9.87 9.87 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.83 9.83 0 01-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.82 9.82 0 019.88 9.89c0 5.45-4.44 9.88-9.89 9.88m8.42-18.3A11.82 11.82 0 0012.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 005.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.16-3.47-8.4"/></svg>
+          Enviar pedido no WhatsApp
+        </button>
+        <button onclick="copySummary()" style="width:100%;margin-top:10px;background:none;border:1px solid rgba(255,255,255,.12);color:#aaa;padding:12px;border-radius:12px;font-size:13px;font-weight:600;cursor:pointer">Copiar resumo do orçamento</button>
+        <div style="margin-top:12px;font-size:11.5px;color:#777;text-align:center">Sem compromisso • Resposta média em 7 minutos • Garantia de 7 dias</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="depoimentos">
+  <div class="container">
+    <div class="section-title reveal"><small>Depoimentos</small><h2>Quem contratou, <span style="color:#D4AF37">recomenda</span></h2></div>
+    <div class="testi-viewport reveal"><div class="testi-track" id="testiTrack"></div></div>
+    <div class="dots" id="testiDots"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:#0c0c0c;border-top:1px solid var(--border)" id="faq">
+  <div class="container" style="display:grid;grid-template-columns:.9fr 1.1fr;gap:40px" id="faqGrid">
+    <div class="reveal">
+      <small style="color:#D4AF37;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;font-size:12px">Dúvidas frequentes</small>
+      <h2 class="font-display" style="font-size:clamp(28px,4vw,42px);letter-spacing:-2px;margin:12px 0 14px">Perguntas & Respostas</h2>
+      <p style="color:#888;font-size:15px;margin-bottom:22px">Não achou sua dúvida? Chame no WhatsApp que respondemos na hora.</p>
+      <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Tenho%20uma%20d%C3%BAvida%20sobre%20os%20servi%C3%A7os%20da%20Design%20Pro." target="_blank" class="btn btn-primary">Falar no WhatsApp</a>
+    </div>
+    <div class="reveal reveal-d1" id="faqList"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section>
+  <div class="container">
+    <div class="cta-box reveal">
+      <div class="badge" style="margin-bottom:18px">✦ Vagas limitadas • Apenas 3 projetos por semana</div>
+      <h2>Pronto para ter uma marca<br><span>que vende por você?</span></h2>
+      <p style="color:#a7a7a7;max-width:560px;margin:0 auto 30px">Clique abaixo, monte seu orçamento em 30 segundos e receba atendimento prioritário agora mesmo.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative">
+        <a href="#orcamento" class="btn btn-primary" style="padding:17px 32px;font-size:15px">Montar meu orçamento →</a>
+        <a href="#portfolio" class="btn btn-outline" style="padding:17px 32px">Ver mais trabalhos</a>
+      </div>
+      <div style="margin-top:22px;font-size:13px;color:#777">★ 4.9 • +450 projetos • Garantia de 7 dias • Suporte humanizado</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contato">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a href="#inicio" class="logo" style="margin-bottom:14px"><span class="logo-mark">D</span> DESIGN<span style="color:#D4AF37">PRO</span></a>
+        <p>Estúdio de design & marketing digital. Criamos marcas desejadas, feeds que vendem e sites que convertem.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#" aria-label="Behance"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.8 10.2c.7-.4 1.1-1 1.1-1.9 0-1.9-1.4-2.5-3.2-2.5H2v12.4h4.9c2 0 4.1-1 4.1-3.3 0-1.4-.7-2.3-2.2-2.7zM4.5 7.8h2c.8 0 1.5.2 1.5 1.1 0 .9-.6 1.2-1.4 1.2h-2.1V7.8zm2.5 8.5H4.5v-3h2.6c1 0 1.7.4 1.7 1.5 0 1.2-.9 1.5-1.8 1.5zM21.4 9h-5v1.4h5V9zM18.9 11.6c-2.6 0-4.3 1.9-4.3 4.4 0 2.6 1.6 4.3 4.4 4.3 2 0 3.4-.9 4-2.6h-2c-.3.6-1 1-1.9 1-1.3 0-2-.7-2.1-1.9h6.1v-.6c0-2.6-1.5-4.6-4.2-4.6zm-2 3.3c.2-1 .9-1.7 2-1.7 1.2 0 1.7.7 1.8 1.7h-3.8z"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.1 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.8a9.87 9.87 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.83 9.83 0 01-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.82 9.82 0 019.88 9.89c0 5.45-4.44 9.88-9.89 9.88m8.42-18.3A11.82 11.82 0 0012.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 005.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.16-3.47-8.4"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.6 7.2a5.6 5.6 0 01-3.6-1.3v6.9a6.1 6.1 0 11-6.1-6.1c.3 0 .7 0 1 .1v3a3.1 3.1 0 102.1 2.9V1h3a5.6 5.6 0 003.6 4.2v3z"/></svg></a>
+        </div>
+      </div>
+      <div><h4>Serviços</h4><a href="#servicos">Social Media</a><a href="#servicos">Identidade Visual</a><a href="#servicos">Sites & Landing Pages</a><a href="#servicos">Currículos</a><a href="#servicos">Cardápios & Catálogos</a></div>
+      <div><h4>Empresa</h4><a href="#portfolio">Portfólio</a><a href="#processo">Processo</a><a href="#planos">Planos</a><a href="#depoimentos">Depoimentos</a><a href="#faq">FAQ</a></div>
+      <div><h4>Atendimento</h4><p>Seg • Sáb — 9h às 19h</p><p>contato@designpro.com.br</p><p>(11) 99999-9999</p><a href="#orcamento" class="btn-ghost" style="margin-top:8px;display:inline-block">Solicitar orçamento →</a></div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.07);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:#666">
+      <span>© 2026 Design Pro • Todos os direitos reservados • CNPJ 00.000.000/0001-00</span>
+      <span>Feito com estratégia para marcas que querem <strong style="color:#D4AF37">vencer.</strong></span>
+    </div>
+  </div>
+</footer>
+
+<a id="whats" href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Quero%20um%20or%C3%A7amento%20com%20a%20Design%20Pro." target="_blank" aria-label="WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.5 0 1.47 1.07 2.89 1.22 3.09.15.2 2.1 3.2 5.1 4.49.71.31 1.27.49 1.7.63.72.23 1.37.2 1.88.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35M12.05 21.8h-.01a9.87 9.87 0 01-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.83 9.83 0 01-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88a9.82 9.82 0 019.88 9.89c0 5.45-4.44 9.88-9.89 9.88m8.42-18.3A11.82 11.82 0 0012.05 0C5.5 0 .16 5.34.16 11.9c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.9 11.9 0 005.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.18-1.24-6.16-3.47-8.4"/></svg>
+</a>
+<button id="toTop" aria-label="Voltar ao topo">↑</button>
+
+<div id="modal"><div class="modal-box"><div style="position:relative"><img id="mImg" src="" alt=""><span class="p-badge" id="mCat" style="top:16px;left:16px"></span></div><div style="padding:34px 30px;position:relative"><button onclick="closeModal()" style="position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:none;color:#fff;cursor:pointer">✕</button><div id="mSmall" style="color:#D4AF37;font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase"></div><h3 id="mTitle" class="font-display" style="font-size:26px;letter-spacing:-1px;margin:8px 0 10px"></h3><p id="mDesc" style="color:#aaa;font-size:14px;margin-bottom:18px"></p><div id="mDeliver" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px"></div><div style="display:flex;justify-content:space-between;align-items:center;background:rgba(212,175,55,.07);border:1px solid rgba(212,175,55,.22);border-radius:14px;padding:14px 16px;margin-bottom:18px"><div><div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px">Investimento</div><div id="mPrice" style="font-family:Sora;font-weight:800;font-size:22px;color:#F1D56A"></div></div><div style="font-size:12px;color:#888;text-align:right">Prazo<br><strong id="mTime" style="color:#fff"></strong></div></div><button class="btn btn-primary" id="mBtn" style="width:100%">Quero um projeto assim →</button></div></div></div>
+<div id="toast"><span style="width:28px;height:28px;border-radius:50%;background:#D4AF37;color:#080808;display:grid;place-items:center;font-weight:800">✓</span><span id="toastMsg">Feito!</span></div>
+
+<script>
+/* PRELOADER */
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('preloader').classList.add('hide'),900)});
+setTimeout(()=>document.getElementById('preloader').classList.add('hide'),3500);
+
+/* HEADER + MENU */
+const header=document.getElementById('header');
+window.addEventListener('scroll',()=>{
+  header.classList.toggle('scrolled',window.scrollY>30);
+  document.getElementById('toTop').classList.toggle('show',window.scrollY>600);
+});
+document.getElementById('toTop').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+const mMenu=document.getElementById('mobileMenu');
+document.getElementById('openMenu').onclick=()=>mMenu.classList.add('open');
+document.getElementById('closeMenu').onclick=()=>mMenu.classList.remove('open');
+mMenu.querySelectorAll('a').forEach(a=>a.onclick=()=>mMenu.classList.remove('open'));
+
+/* ROTATOR */
+const words=['encanta.','vende.','converte.','posiciona.','fideliza.'];
+let wi=0;const rot=document.getElementById('rotator');
+setInterval(()=>{wi=(wi+1)%words.length;rot.style.opacity=0;setTimeout(()=>{rot.textContent=words[wi];rot.style.opacity=1},250)},2400);
+rot.style.transition='opacity .25s';
+
+/* DUST CANVAS */
+const c=document.getElementById('dust'),ctx=c.getContext('2d');let P=[];
+function resize(){c.width=c.offsetWidth;c.height=c.offsetHeight}resize();window.addEventListener('resize',resize);
+for(let i=0;i<70;i++)P.push({x:Math.random()*2000,y:Math.random()*1000,r:Math.random()*2+0.5,s:Math.random()*0.6+0.2,o:Math.random()*0.7+0.2,ph:Math.random()*Math.PI*2});
+(function anim(t){ctx.clearRect(0,0,c.width,c.height);P.forEach(p=>{p.y-=p.s;p.x+=Math.sin(t/2000+p.ph)*0.3;if(p.y<0){p.y=c.height;p.x=Math.random()*c.width}ctx.beginPath();ctx.arc(p.x%(c.width||1),p.y, p.r,0,7);ctx.fillStyle=`rgba(212,175,55,${p.o*0.7})`;ctx.fill()});requestAnimationFrame(anim)})();
+
+/* TILT */
+const tilt=document.getElementById('tilt');
+if(window.innerWidth>900){
+ document.querySelector('.hero-visual').addEventListener('mousemove',e=>{
+  const r=e.currentTarget.getBoundingClientRect();
+  const x=(e.clientX-r.left)/r.width-0.5, y=(e.clientY-r.top)/r.height-0.5;
+  tilt.style.transform=`rotateY(${x*12}deg) rotateX(${-y*12}deg)`;
+ });
+ document.querySelector('.hero-visual').addEventListener('mouseleave',()=>tilt.style.transform='rotateY(0) rotateX(0)');
+}
+
+/* DATA */
+const projects=[
+ {cat:'identidade',catLabel:'Identidade Visual',title:'Café Aroma — Rebranding completo',desc:'Logotipo artesanal, paleta terrosa premium, papelaria e fachada. Marca reposicionada para público high-ticket.',img:'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&q=80&auto=format&fit=crop',price:'R$ 897',time:'5 dias',deliver:['Logo + variações','Manual de marca','Papelaria','Mockups']},
+ {cat:'social',catLabel:'Social Media',title:'Pack 30 dias — Clínica Essenza',desc:'Feed harmonioso + carrosséis educativos + stories diários. Crescimento de 312% no engajamento em 60 dias.',img:'https://images.unsplash.com/photo-1611926653458-09294b3142bf?w=800&q=80&auto=format&fit=crop',price:'R$ 597',time:'48h',deliver:['30 artes','8 carrosséis','Legendas','Calendário']},
+ {cat:'sites',catLabel:'Site Institucional',title:'Advocacia Prado — Site + Captação',desc:'Site institucional com prova social, agendamento via WhatsApp e SEO local. 4x mais contatos qualificados.',img:'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80&auto=format&fit=crop',price:'R$ 1.297',time:'7 dias',deliver:['Site responsivo','SEO','Integração WhatsApp','Copy']},
+ {cat:'curriculo',catLabel:'Currículo Premium',title:'Currículo Executivo + LinkedIn',desc:'Currículo ATS de 2 páginas + otimização completa de LinkedIn. Cliente aprovado em 3 processos em 21 dias.',img:'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80&auto=format&fit=crop',price:'R$ 97',time:'24h',deliver:['Currículo ATS','Carta apresentação','LinkedIn','PDF + Editável']},
+ {cat:'social',catLabel:'Tráfego & Criativos',title:'E-commerce Bella — Criativos Ads',desc:'15 criativos UGC + estáticos para Meta Ads. ROAS de 6.2x e CAC reduzido em 43%.',img:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80&auto=format&fit=crop',price:'R$ 497',time:'3 dias',deliver:['15 criativos','Variações A/B','Copy ads','Guia testes']},
+ {cat:'identidade',catLabel:'Cardápio Digital',title:'Bistrô Sabor — Cardápio QR',desc:'Cardápio digital interativo com fotos tratadas, QR Code de mesa e link para delivery. Ticket médio +28%.',img:'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80&auto=format&fit=crop',price:'R$ 297',time:'2 dias',deliver:['Cardápio digital','QR Code','Fotos tratadas','Link delivery']},
+];
+
+/* PORTFOLIO RENDER */
+const grid=document.getElementById('portfolioGrid');
+function renderPort(filter='all'){
+ grid.innerHTML='';
+ const list=projects.filter(p=>filter==='all'||p.cat===filter);
+ document.getElementById('portCount').textContent=String(list.length).padStart(2,'0')+' PROJETOS';
+ list.forEach(p=>{
+  const idx=projects.indexOf(p);
+  const d=document.createElement('div');
+  d.className='portfolio-item reveal visible';
+  d.innerHTML=`<span class="p-badge">${p.catLabel}</span><span class="p-arrow">↗</span><img loading="lazy" src="${p.img}" alt="${p.title}"><div class="portfolio-info"><small>${p.catLabel} • ${p.price}</small><h3>${p.title}</h3><p>${p.desc.slice(0,70)}...</p></div>`;
+  d.onclick=()=>openModal(idx);
+  grid.appendChild(d);
+ });
+}
+renderPort();
+document.querySelectorAll('.filter-btn').forEach(b=>b.onclick=()=>{
+ document.querySelectorAll('.filter-btn').forEach(x=>x.classList.remove('active'));
+ b.classList.add('active');renderPort(b.dataset.filter);
+});
+
+/* MODAL */
+function openModal(i){
+ const p=projects[i];
+ document.getElementById('mImg').src=p.img;
+ document.getElementById('mCat').textContent=p.catLabel;
+ document.getElementById('mSmall').textContent=p.catLabel+' • Case Design Pro';
+ document.getElementById('mTitle').textContent=p.title;
+ document.getElementById('mDesc').textContent=p.desc;
+ document.getElementById('mPrice').textContent=p.price;
+ document.getElementById('mTime').textContent=p.time;
+ document.getElementById('mDeliver').innerHTML=p.deliver.map(d=>`<span style="font-size:12px;background:rgba(212,175,55,.1);border:1px solid rgba(212,175,55,.25);color:#F1D56A;padding:6px 12px;border-radius:99px">✓ ${d}</span>`).join('');
+ document.getElementById('mBtn').onclick=()=>{closeModal();document.getElementById('orcamento').scrollIntoView({behavior:'smooth'});toast('Projeto selecionado! Monte seu orçamento abaixo.');};
+ document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow=''}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+/* CALCULATOR */
+const services=[
+ {id:'social',name:'Pack Social Media (30 artes)',desc:'Feed + stories + legendas',price:497,deadline:'3 dias'},
+ {id:'identidade',name:'Identidade Visual Completa',desc:'Logo + manual + papelaria',price:897,deadline:'5 dias'},
+ {id:'site',name:'Site Institucional',desc:'Até 5 páginas + WhatsApp',price:1297,deadline:'7 dias'},
+ {id:'landing',name:'Landing Page',desc:'Alta conversão + copy base',price:697,deadline:'4 dias'},
+ {id:'curriculo',name:'Currículo Profissional',desc:'ATS + LinkedIn',price:97,deadline:'24h'},
+ {id:'catalogo',name:'Cardápio / Catálogo Digital',desc:'Interativo + QR Code',price:297,deadline:'2 dias'},
+];
+const calcList=document.getElementById('calcList');
+services.forEach(s=>{
+ const div=document.createElement('label');
+ div.className='calc-item';div.dataset.id=s.id;
+ div.innerHTML=`<span style="display:flex;gap:12px;align-items:center"><input type="checkbox" value="${s.id}"><span><strong style="font-size:14px">${s.name}</strong><br><span style="font-size:12px;color:#888">${s.desc} • ${s.deadline}</span></span></span><strong style="font-family:Sora;color:#F1D56A;white-space:nowrap">R$ ${s.price}</strong>`;
+ div.querySelector('input').addEventListener('change',e=>{div.classList.toggle('selected',e.target.checked);calc()});
+ calcList.appendChild(div);
+});
+document.getElementById('urgency').onchange=calc;
+document.getElementById('extra').onchange=calc;
+function getSelected(){return [...calcList.querySelectorAll('input:checked')].map(i=>services.find(s=>s.id===i.value))}
+function calc(){
+ const sel=getSelected();
+ const urg=parseFloat(document.getElementById('urgency').value);
+ const ext=parseInt(document.getElementById('extra').value);
+ let sub=sel.reduce((a,s)=>a+s.price,0);
+ let total=Math.round(sub*urg+ext);
+ document.getElementById('totalVal').textContent='R$ '+total.toLocaleString('pt-BR');
+ document.getElementById('installments').textContent= total>0? `ou 12x de R$ ${Math.round(total/12).toLocaleString('pt-BR')} no cartão` : 'ou 12x no cartão';
+ const box=document.getElementById('summaryItems');
+ box.innerHTML= sel.length? sel.map(s=>`<div style="display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);padding-bottom:8px"><span>✓ ${s.name}</span><strong style="color:#fff">R$ ${s.price}</strong></div>`).join('') + (ext?`<div style="display:flex;justify-content:space-between"><span>+ Extras</span><strong>R$ ${ext}</strong></div>`:'') : `<span style="color:#666">Nenhum serviço selecionado ainda. Escolha acima para ver o valor.</span>`;
+ const times=sel.map(s=>s.deadline);
+ document.getElementById('deadline').textContent= sel.length? (document.getElementById('urgency').selectedIndex===2?'24h':document.getElementById('urgency').selectedIndex===1?'48h':times.includes('7 dias')?'7 dias':times.includes('5 dias')?'5 dias':'2-3 dias') : '—';
+ return {sel,total};
+}
+calc();
+function selectService(id){
+ document.getElementById('orcamento').scrollIntoView({behavior:'smooth'});
+ const map={social:'social',identidade:'identidade',site:'site',landing:'landing',curriculo:'curriculo',catalogo:'catalogo',trafego:'social'};
+ const target=map[id]||id;
+ const input=calcList.querySelector(`input[value="${target}"]`);
+ if(input&&!input.checked){input.checked=true;input.dispatchEvent(new Event('change'));}
+ toast('Serviço adicionado ao orçamento!');
+}
+function choosePlan(p){toast('Plano '+p+' selecionado! Finalize abaixo.');}
+function sendWhats(){
+ const name=document.getElementById('cliName').value.trim();
+ const phone=document.getElementById('cliPhone').value.trim();
+ const msg=document.getElementById('cliMsg').value.trim();
+ if(!name||!phone){toast('Preencha nome e WhatsApp para continuar.');document.getElementById('cliName').focus();return}
+ const {sel,total}=calc();
+ if(!sel.length){toast('Selecione ao menos 1 serviço.');return}
+ const urgTxt=document.getElementById('urgency').selectedOptions[0].text;
+ let txt=`Olá! Sou ${name} (${phone})%0AQuero um orçamento Design Pro:%0A%0A`;
+ sel.forEach(s=>txt+=`✓ ${s.name} — R$ ${s.price}%0A`);
+ txt+=`%0APrazo: ${urgTxt}%0A*Total estimado: R$ ${total.toLocaleString('pt-BR')}*%0A`;
+ if(msg)txt+=`%0ADetalhes: ${encodeURIComponent(msg)}`;
+ window.open(`https://wa.me/5511999999999?text=${txt}`,'_blank');
+ toast('Abrindo WhatsApp com seu orçamento...');
+}
+function copySummary(){
+ const {sel,total}=calc();
+ if(!sel.length){toast('Selecione serviços para copiar.');return}
+ const t=sel.map(s=>`✓ ${s.name} — R$ ${s.price}`).join('\n')+`\nTotal: R$ ${total.toLocaleString('pt-BR')}`;
+ navigator.clipboard.writeText(t).then(()=>toast('Resumo copiado!'));
+}
+
+/* PRICING TOGGLE */
+const bM=document.getElementById('btnMonthly'),bS=document.getElementById('btnSingle');
+function setMode(m){
+ bM.classList.toggle('active',m==='m');bS.classList.toggle('active',m==='s');
+ document.querySelectorAll('.p-val').forEach(el=>{el.textContent=m==='m'?el.dataset.m:el.dataset.s});
+ document.querySelectorAll('.price small').forEach(s=>s.textContent=m==='m'?'/mês':'/projeto');
+}
+bM.onclick=()=>setMode('m');bS.onclick=()=>setMode('s');
+
+/* TESTIMONIALS */
+const testis=[
+ {name:'Mariana Souza',role:'Dona da Clínica Essenza',img:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80&auto=format&fit=crop',text:'“Meu Instagram saiu de amador para referência na cidade. Em 2 meses fechei 40 novos procedimentos só pelo perfil. Melhor investimento que fiz.”',stars:'★★★★★',res:'+312% engajamento'},
+ {name:'Carlos Prado',role:'Advogado • Prado Advocacia',img:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80&auto=format&fit=crop',text:'“Site impecável, entrega antes do prazo e suporte absurdo de bom. Passei a receber 4x mais contatos qualificados pelo WhatsApp.”',stars:'★★★★★',res:'4x mais contatos'},
+ {name:'João Pedro',role:'Aprovado • Analista Sênior',img:'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80&auto=format&fit=crop',text:'“O currículo novo mudou tudo. Fui chamado para 5 entrevistas em 2 semanas e passei no emprego dos sonhos com 60% de aumento.”',stars:'★★★★★',res:'Aprovado em 21 dias'},
+ {name:'Fernanda Lima',role:'Dona do Bistrô Sabor',img:'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80&auto=format&fit=crop',text:'“Identidade + cardápio digital transformaram meu restaurante. Cliente elogia todo dia e o ticket médio subiu quase 30%.”',stars:'★★★★★',res:'+28% ticket médio'},
+];
+const track=document.getElementById('testiTrack'),dots=document.getElementById('testiDots');
+testis.forEach((t,i)=>{
+ const d=document.createElement('div');d.className='testi-card';
+ d.innerHTML=`<div><div style="color:#D4AF37;letter-spacing:3px;margin-bottom:12px">${t.stars}</div><p style="font-size:18px;line-height:1.6;font-weight:500">“${t.text.replace(/[“”]/g,'')}”</p><div style="display:flex;gap:14px;align-items:center;margin-top:22px"><img src="${t.img}" style="width:52px;height:52px;border-radius:50%;object-fit:cover;border:2px solid #D4AF37"><div><div style="font-weight:800">${t.name}</div><div style="font-size:13px;color:#888">${t.role}</div></div><span style="margin-left:auto;background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.3);color:#4ade80;font-size:12px;font-weight:800;padding:6px 12px;border-radius:99px;white-space:nowrap">${t.res}</span></div></div><div style="background:linear-gradient(135deg,#1e1c10,#121212);border:1px solid rgba(212,175,55,.25);border-radius:16px;padding:26px;text-align:center"><div style="font-family:Sora;font-size:44px;font-weight:800;color:#F1D56A">5.0</div><div style="color:#D4AF37">★★★★★</div><div style="font-size:12px;color:#888;margin-top:8px">Avaliação verificada<br>Projeto entregue em 2026</div></div>`;
+ track.appendChild(d);
+ const b=document.createElement('button');b.className='dot-btn'+(i===0?' active':'');b.onclick=()=>goT(i);dots.appendChild(b);
+});
+let ti=0,tTimer;
+function goT(i){ti=i;track.style.transform=`translateX(-${i*100}%)`;dots.querySelectorAll('.dot-btn').forEach((d,k)=>d.classList.toggle('active',k===i));restartT()}
+function restartT(){clearInterval(tTimer);tTimer=setInterval(()=>goT((ti+1)%testis.length),5500)}
+restartT();
+
+/* FAQ */
+const faqs=[
+ {q:'Qual o prazo de entrega?',a:'A maioria dos projetos é entregue em 2 a 7 dias. Currículos em 24h, social media em 48h, identidade em 5 dias e sites em 7 dias. Precisa urgente? Temos entrega expressa em 24h.'},
+ {q:'Quantas revisões tenho direito?',a:'Revisões ilimitadas até sua aprovação total nos planos Profissional e Premium. Nos demais, garantimos ajustes até você ficar 100% satisfeito — sem custo extra por revisão justa.'},
+ {q:'Quais as formas de pagamento?',a:'Pix (com 5% de desconto), cartão em até 12x e boleto para empresas. Projetos acima de R$ 800 podem ser parcelados em 50% entrada + 50% na entrega.'},
+ {q:'Os arquivos são editáveis?',a:'Sim! Você recebe PDF em alta, PNG, JPG, arquivos editáveis (PSD/Canva/Figma conforme o projeto) + manual de uso. Tudo organizado no Google Drive.'},
+ {q:'E se eu não gostar do resultado?',a:'Você tem 7 dias de garantia incondicional. Se não amar a primeira proposta, refazemos ou devolvemos seu investimento. Risco zero para você.'},
+];
+const fl=document.getElementById('faqList');
+faqs.forEach((f,i)=>{
+ const d=document.createElement('div');d.className='faq-item'+(i===0?' open':'');
+ d.innerHTML=`<button class="faq-q">${f.q}<span class="faq-icon">+</span></button><div class="faq-a"><div>${f.a}</div></div>`;
+ d.querySelector('.faq-q').onclick=()=>{
+  const open=d.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(x=>{x.classList.remove('open');x.querySelector('.faq-a').style.maxHeight=null});
+  if(!open){d.classList.add('open');d.querySelector('.faq-a').style.maxHeight=d.querySelector('.faq-a').scrollHeight+'px'}
+ };
+ fl.appendChild(d);
+});
+document.querySelector('.faq-item.open .faq-a').style.maxHeight='200px';
+
+/* REVEAL + COUNTERS */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+ if(e.isIntersecting){const el=e.target,end=parseInt(el.dataset.count);let cur=0;const step=Math.max(1,Math.round(end/60));const t=setInterval(()=>{cur+=step;if(cur>=end){cur=end;clearInterval(t)}el.textContent=cur},30);cio.unobserve(el)}
+}),{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+/* TOAST */
+let toastT;
+function toast(msg){document.getElementById('toastMsg').textContent=msg;const t=document.getElementById('toast');t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),3200)}
+
+/* PHONE MASK */
+document.getElementById('cliPhone').addEventListener('input',e=>{
+ let v=e.target.value.replace(/\D/g,'').slice(0,11);
+ if(v.length>6)e.target.value=`(${v.slice(0,2)}) ${v.slice(2,7)}-${v.slice(7)}`;
+ else if(v.length>2)e.target.value=`(${v.slice(0,2)}) ${v.slice(2)}`;
+ else e.target.value=v;
+});
+if(window.innerWidth<=1020){document.getElementById('faqGrid').style.gridTemplateColumns='1fr'}
+</script>
+</body>
+</html>
